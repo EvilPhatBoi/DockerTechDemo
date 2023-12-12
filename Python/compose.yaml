@@ -1,0 +1,10 @@
+services:
+  web:
+    container_name: cloudmonitor
+    build: .
+    ports:
+      - "80:5000"
+    volumes:
+      - cloudmonitor_datavolume:/database
+volumes:
+  cloudmonitor_datavolume:
