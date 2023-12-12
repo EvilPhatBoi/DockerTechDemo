@@ -1,0 +1,25 @@
+@page "/list"
+
+<PageTitle>Cloud monitor - liste</PageTitle>
+
+<h1>Bum Carlos, her er de!</h1>
+<div class="col-lg-8 px-0">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">TimeStamp</th>
+                <th scope="col">PositiveChecks</th>
+                <th scope="col">NegativeChecks</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for monitor_rec in monitorings %}
+            <tr>
+                <td>{{ monitor_rec.timestamp }}</td>
+                <td>{{ monitor_rec.positivechecks }}</td>
+                <td>{{ monitor_rec.negativechecks }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

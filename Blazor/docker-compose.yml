@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  blazor:
+    image: ${DOCKER_REGISTRY-}blazor
+    build:
+      context: .
+      dockerfile: Blazor/Dockerfile
+    volumes:
+      - cloudmonitor_datavolume:/database
+volumes:
+  cloudmonitor_datavolume:

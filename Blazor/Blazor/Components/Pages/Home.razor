@@ -1,0 +1,30 @@
+﻿@page "/"
+@inject DatabaseService databaseService
+
+<PageTitle>Cloud monitor - opret</PageTitle>
+
+<h1>Så skal der oprettes</h1>
+<div class="col-lg-8 px-0">
+    <form action="?" method="POST">
+        <div class="mb-3">
+            <label class="form-label">TimeStamp</label>
+            <input type="text" name="timestamp" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">PositiveChecks</label>
+            <input type="text" name="positivechecks" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">NegativeChecks</label>
+            <input type="text" name="negativechecks" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Opret</button>
+    </form>
+</div>
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        var test = await databaseService.GetMonitorRecordsAsync();
+
+    }
+}

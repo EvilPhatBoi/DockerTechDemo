@@ -1,4 +1,8 @@
 using Blazor.Components;
+using Blazor.Data;
+using Blazor.Services;
+using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,17 +10,21 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+builder.Services.AddDbContext<UptimeMonitorDbContext>(options =>
+{
+    options.UseSqlite(builder.Configuration.GetConnectionString("SqLiteDb"));
+});
+
+builder.Services.AddScoped<DatabaseService>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
 }
-
-app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 app.UseAntiforgery();
